@@ -41,7 +41,7 @@
 </script>
 <div class="row mb-4">
     <div class="col-auto">
-        <select class="form-select" bind:value={selectedOption} on:change={handleSelectChange}>
+        <select bind:value={selectedOption} class="form-select" on:change={handleSelectChange}>
             <option selected disabled>Filter</option>
             <option value="block">Block</option>
             <option value="tx">Transaction</option>
@@ -49,30 +49,39 @@
         </select>
     </div>
     <div class="col">
-        <input type="text" class="form-control" placeholder={placeholder}>
+        <input bind:value={inputValue} class="form-control" placeholder={placeholder} type="text">
     </div>
     <div class="col-auto">
-        <a href={`/${selectedOption}/${inputValue}`} class="btn btn-outline-dark" type="button"><Icon name="search"/> Search</a>
+        <a class="btn btn-outline-dark" href={`/${selectedOption}/${inputValue}`}>
+            <Icon name="search"/>
+            Search
+        </a>
     </div>
 </div>
 <div class="row mb-4">
     <div class="card border-0 col">
         <div class="card-body border border-dark">
-            <h5 class="card-title"><Icon name="box"/> {blocks.content[0].id.toLocaleString()}</h5>
+            <h5 class="card-title">
+                <Icon name="box"/> {blocks.content[0].id.toLocaleString()}
+            </h5>
             <h6 class="card-subtitle text-body-secondary">Last Block</h6>
         </div>
     </div>
 
     <div class="card border-0 col">
         <div class="card-body border border-dark">
-            <h5 class="card-title"><Icon name="file-text"/> {txs.page.totalElements.toLocaleString()}</h5>
+            <h5 class="card-title">
+                <Icon name="file-text"/> {txs.page.totalElements.toLocaleString()}
+            </h5>
             <h6 class="card-subtitle text-body-secondary">Transactions</h6>
         </div>
     </div>
 
     <div class="card border-0 col">
         <div class="card-body border border-dark">
-            <h5 class="card-title"><Icon name="fuel-pump"/> {blocks.content[0].gasLimit.toLocaleString()}</h5>
+            <h5 class="card-title">
+                <Icon name="fuel-pump"/> {blocks.content[0].gasLimit.toLocaleString()}
+            </h5>
             <h6 class="card-subtitle text-body-secondary">Last Gas Limit</h6>
         </div>
     </div>
