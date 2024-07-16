@@ -1,3 +1,13 @@
+## 0.1.0 (2024-07-16)
+
+### Feat
+
+- add footer
+
+### Fix
+
+- add missing bind:value
+
 ## 0.0.4 (2024-07-16)
 
 ### Fix
