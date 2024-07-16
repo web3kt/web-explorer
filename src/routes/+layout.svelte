@@ -1,7 +1,7 @@
 <script lang="ts">
-    import '../app.css';
     import NavItem from "$lib/component/NavItem.svelte";
 </script>
+
 <div class="container">
     <div class="row">
         <nav class="navbar navbar-expand-lg">
