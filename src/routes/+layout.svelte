@@ -1,5 +1,6 @@
 <script lang="ts">
     import NavItem from "$lib/component/NavItem.svelte";
+    import Icon from "$lib/component/Icon.svelte";
 </script>
 
 <div class="container">
@@ -21,5 +22,13 @@
             </div>
         </nav>
     </div>
+
     <slot/>
+
+    <footer class="py-3 my-4 border-top">
+        <p class="text-center">
+            <Icon name="c-circle"/>
+            2024 web3kt.org
+        </p>
+    </footer>
 </div>
