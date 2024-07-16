@@ -30,7 +30,7 @@
     <div class="card border-0 col">
         <div class="card-body border border-dark">
             <h5 class="card-title">{txs.page.totalElements.toLocaleString()}</h5>
-            <h6 class="card-subtitle text-body-secondary">Transactions</h6>
+            <h6 class="card-subtitle text-body-secondary">Internal Transactions</h6>
         </div>
     </div>
 </div>
@@ -47,7 +47,7 @@
 <table class="table align-middle">
     <thead>
     <tr>
-        <th>Parent Transaction Hash</th>
+        <th>Parent Transaction</th>
         <th>Block</th>
         <th>Age</th>
         <th>From</th>
