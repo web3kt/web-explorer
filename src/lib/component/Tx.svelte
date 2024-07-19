@@ -9,10 +9,10 @@
 </script>
 
 <Button href="/tx/{value.id}" sm={sm}>
-    {#if value.status === "0x1"}
-        <Icon name="file-text"/>
-    {:else}
+    {#if value.status === "0x0"}
         <Icon name="x-circle"/>
+    {:else}
+        <Icon name="file-text"/>
     {/if}
     {short ? Utils.shortText(value.id) : value.id}
 </Button>
