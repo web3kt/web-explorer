@@ -1,3 +1,13 @@
+## 0.2.0 (2024-07-20)
+
+### Feat
+
+- add token, token transaction, and log
+
+### Fix
+
+- **Pagination.svelte**: page number and total pages toLocaleString()
+
 ## 0.1.2 (2024-07-20)
 
 ### Fix
