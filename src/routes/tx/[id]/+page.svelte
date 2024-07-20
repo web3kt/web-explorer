@@ -28,7 +28,7 @@
     <tr>
         <th>Status</th>
         <td>
-            <Badge success={tx.status === "0x1"}/>
+            <Badge success={tx.status !== "0x0"}/>
         </td>
     </tr>
     {#if tx.revertReason}
