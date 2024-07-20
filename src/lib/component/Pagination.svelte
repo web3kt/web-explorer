@@ -42,7 +42,11 @@
             </button>
         </li>
         <li class="page-item">
-            <button class="page-link">{pageInfo.number + 1} of {pageInfo.totalPages}</button>
+            <button class="page-link">
+                {(pageInfo.number + 1).toLocaleString()}
+                of
+                {pageInfo.totalPages.toLocaleString()}
+            </button>
         </li>
         <li class="page-item {pageInfo.totalPages - 1 === pageInfo.number ? 'disabled' : ''}">
             <button class="page-link" on:click={onClickNext}>
