@@ -35,7 +35,8 @@ interface Block {
 
 interface Transaction {
     id: string,
-    block: Block,
+    blockId: number,
+    timestamp: number,
     contractAddress: string,
     from: string,
     to: string,
@@ -53,6 +54,8 @@ interface Transaction {
 }
 
 interface Log {
+    transaction: Transaction,
+    timestamp: number,
     logIndex: number,
     removed: boolean,
     address: string,
@@ -68,6 +71,16 @@ interface Address {
 
 interface InternalTransaction {
     transaction: Transaction,
+    timestamp: number,
+    from: string,
+    to: string,
+    value: number,
+}
+
+interface TokenTransaction {
+    transaction: Transaction,
+    timestamp: number,
+    token: Token,
     from: string,
     to: string,
     value: number,
@@ -76,4 +89,12 @@ interface InternalTransaction {
 interface Topic {
     value: string,
     name: string
+}
+
+interface Token {
+    id: string
+    name: string,
+    symbol: string,
+    decimals: number
+    totalSupply: number
 }

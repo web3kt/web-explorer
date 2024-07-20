@@ -4,15 +4,15 @@
     import Tx from "$lib/component/Tx.svelte";
     import Block from "$lib/component/Block.svelte";
     import Address from "$lib/component/Address.svelte";
-    import {symbol} from "$lib/env";
-    import Icon from "$lib/component/Icon.svelte";
+    import {symbol} from "$lib/env"
+    import Token from "$lib/component/Token.svelte";
 
     export let data: {
         address: ApiResponse<Address>;
-        txs: ApiResponse<PagedModel<Transaction>>;
+        logs: ApiResponse<PagedModel<Log>>;
     };
     $: address = data.address.body;
-    $: txs = data.txs.body;
+    $: logs = data.logs.body;
 </script>
 
 <div class="row mb-4">
@@ -32,15 +32,15 @@
     </div>
     <div class="card border-0 col">
         <div class="card-body border border-dark">
-            <h5 class="card-title">{txs.page.totalElements.toLocaleString()}</h5>
-            <h6 class="card-subtitle text-body-secondary">Transactions</h6>
+            <h5 class="card-title">{logs.page.totalElements.toLocaleString()}</h5>
+            <h6 class="card-subtitle text-body-secondary">Logs</h6>
         </div>
     </div>
 </div>
 
 <ul class="nav nav-tabs mb-4">
     <li class="nav-item">
-        <a href="/address/{address.id}" class="nav-link active">Transactions</a>
+        <a href="/address/{address.id}" class="nav-link">Transactions</a>
     </li>
     <li class="nav-item">
         <a href="/address/{address.id}/internal-transactions" class="nav-link">Internal Transactions</a>
@@ -49,41 +49,40 @@
         <a href="/address/{address.id}/token-transactions" class="nav-link">Token Transactions</a>
     </li>
     <li class="nav-item">
-        <a href="/address/{address.id}/logs" class="nav-link">Log</a>
+        <a href="/address/{address.id}/logs" class="nav-link active">Log</a>
     </li>
 </ul>
-
-<Pagination pageInfo={txs.page}/>
+<Pagination pageInfo={logs.page}/>
 <table class="table align-middle">
     <thead>
     <tr>
-        <th>Transaction Hash</th>
+        <th>Transaction</th>
         <th>Block</th>
         <th>Age</th>
-        <th>From</th>
-        <th>To</th>
-        <th class="text-end">Value</th>
-        <th class="text-end">Txn Fee</th>
+        <th>Topic</th>
+        <th>Data</th>
     </tr>
     </thead>
     <tbody>
-    {#each txs.content as tx}
+    {#each logs.content as log}
         <tr>
             <td>
-                <Tx value={tx} sm short/>
+                <Tx value={log.transaction} sm short/>
             </td>
             <td>
-                <Block id={tx.blockId} sm/>
+                <Block id={log.transaction.blockId} sm/>
             </td>
-            <td>{Utils.timeSince(tx.timestamp)}</td>
+            <td>{Utils.timeSince(log.timestamp)}</td>
             <td>
-                <Address id={tx.from} sm short/>
+                <ul>
+                    {#each log.topics as topic}
+                        <li>{topic.value}{topic.name ? ` (${topic.name})` : ''}</li>
+                    {/each}
+                </ul>
             </td>
             <td>
-                <Address id={tx.to} sm short/>
+                <textarea class="form-control" disabled>{log.data}</textarea>
             </td>
-            <td class="text-end">{Utils.toEth(tx.value)} {symbol}</td>
-            <td class="text-end">{Utils.toEth(tx.gasUsed * tx.gasPrice)} {symbol}</td>
         </tr>
     {/each}
     </tbody>

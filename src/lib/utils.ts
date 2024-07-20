@@ -39,8 +39,8 @@ export class Utils {
         return text.slice(0, 7) + "..." + text.slice(text.length - 5)
     }
 
-    static toEth(wei: number): number {
-        return wei / 1000000000000000000
+    static toEth(wei: number, decimals: number = 18): number {
+        return wei / Math.pow(10, decimals)
     }
 
     static toGwei(wei: number): number {

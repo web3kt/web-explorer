@@ -42,6 +42,12 @@
     <li class="nav-item">
         <a href="/address/{address.id}/internal-transactions" class="nav-link active">Internal Transactions</a>
     </li>
+    <li class="nav-item">
+        <a href="/address/{address.id}/token-transactions" class="nav-link">Token Transactions</a>
+    </li>
+    <li class="nav-item">
+        <a href="/address/{address.id}/logs" class="nav-link">Log</a>
+    </li>
 </ul>
 <Pagination pageInfo={txs.page}/>
 <table class="table align-middle">
@@ -62,9 +68,9 @@
                 <Tx value={tx.transaction} sm short/>
             </td>
             <td>
-                <Block id={tx.transaction.block.id} sm/>
+                <Block id={tx.transaction.blockId} sm/>
             </td>
-            <td>{Utils.timeSince(tx.transaction.block.timestamp)}</td>
+            <td>{Utils.timeSince(tx.timestamp)}</td>
             <td>
                 <Address id={tx.from} sm short/>
             </td>

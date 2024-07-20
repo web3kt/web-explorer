@@ -18,12 +18,12 @@
     <tr>
         <th>Block</th>
         <td>
-            <Block id={tx.block.id} sm/>
+            <Block id={tx.blockId} sm/>
         </td>
     </tr>
     <tr>
         <th>Timestamp</th>
-        <td>{Utils.timeSince(tx.block.timestamp)} ({new Date(tx.block.timestamp).toLocaleString()})</td>
+        <td>{Utils.timeSince(tx.timestamp)} ({new Date(tx.timestamp).toLocaleString()})</td>
     </tr>
     <tr>
         <th>Status</th>

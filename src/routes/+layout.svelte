@@ -17,6 +17,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <NavItem href="/block">Block</NavItem>
                         <NavItem href="/tx">Transaction</NavItem>
+                        <NavItem href="/token">Token</NavItem>
                     </ul>
                 </div>
             </div>

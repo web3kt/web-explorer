@@ -36,6 +36,8 @@
             placeholder = txs.content[0].id
         } else if (selectedOption === "address") {
             placeholder = "0x0000000000000000000000000000000000000000"
+        } else if (selectedOption === "token") {
+            placeholder = "0x0000000000000000000000000000000000000000"
         }
     }
 </script>
@@ -46,6 +48,7 @@
             <option value="block">Block</option>
             <option value="tx">Transaction</option>
             <option value="address">Address</option>
+            <option value="token">Token</option>
         </select>
     </div>
     <div class="col">

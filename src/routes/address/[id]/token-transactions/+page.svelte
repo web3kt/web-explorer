@@ -4,12 +4,12 @@
     import Tx from "$lib/component/Tx.svelte";
     import Block from "$lib/component/Block.svelte";
     import Address from "$lib/component/Address.svelte";
-    import {symbol} from "$lib/env";
-    import Icon from "$lib/component/Icon.svelte";
+    import {symbol} from "$lib/env"
+    import Token from "$lib/component/Token.svelte";
 
     export let data: {
         address: ApiResponse<Address>;
-        txs: ApiResponse<PagedModel<Transaction>>;
+        txs: ApiResponse<PagedModel<TokenTransaction>>;
     };
     $: address = data.address.body;
     $: txs = data.txs.body;
@@ -33,57 +33,58 @@
     <div class="card border-0 col">
         <div class="card-body border border-dark">
             <h5 class="card-title">{txs.page.totalElements.toLocaleString()}</h5>
-            <h6 class="card-subtitle text-body-secondary">Transactions</h6>
+            <h6 class="card-subtitle text-body-secondary">Internal Transactions</h6>
         </div>
     </div>
 </div>
 
 <ul class="nav nav-tabs mb-4">
     <li class="nav-item">
-        <a href="/address/{address.id}" class="nav-link active">Transactions</a>
+        <a href="/address/{address.id}" class="nav-link">Transactions</a>
     </li>
     <li class="nav-item">
         <a href="/address/{address.id}/internal-transactions" class="nav-link">Internal Transactions</a>
     </li>
     <li class="nav-item">
-        <a href="/address/{address.id}/token-transactions" class="nav-link">Token Transactions</a>
+        <a href="/address/{address.id}/token-transactions" class="nav-link active">Token Transactions</a>
     </li>
     <li class="nav-item">
         <a href="/address/{address.id}/logs" class="nav-link">Log</a>
     </li>
 </ul>
-
 <Pagination pageInfo={txs.page}/>
 <table class="table align-middle">
     <thead>
     <tr>
-        <th>Transaction Hash</th>
+        <th>Transaction</th>
         <th>Block</th>
         <th>Age</th>
+        <th>Token</th>
         <th>From</th>
         <th>To</th>
         <th class="text-end">Value</th>
-        <th class="text-end">Txn Fee</th>
     </tr>
     </thead>
     <tbody>
     {#each txs.content as tx}
         <tr>
             <td>
-                <Tx value={tx} sm short/>
+                <Tx value={tx.transaction} sm short/>
             </td>
             <td>
-                <Block id={tx.blockId} sm/>
+                <Block id={tx.transaction.blockId} sm/>
             </td>
             <td>{Utils.timeSince(tx.timestamp)}</td>
+            <td>
+                <Token token={tx.token} sm/>
+            </td>
             <td>
                 <Address id={tx.from} sm short/>
             </td>
             <td>
                 <Address id={tx.to} sm short/>
             </td>
-            <td class="text-end">{Utils.toEth(tx.value)} {symbol}</td>
-            <td class="text-end">{Utils.toEth(tx.gasUsed * tx.gasPrice)} {symbol}</td>
+            <td class="text-end">{Utils.toEth(tx.value, tx.token.decimals)} {tx.token.symbol}</td>
         </tr>
     {/each}
     </tbody>

@@ -30,9 +30,9 @@
                 <Tx value={tx} sm short/>
             </td>
             <td>
-                <Block id={tx.block.id} sm/>
+                <Block id={tx.blockId} sm/>
             </td>
-            <td>{Utils.timeSince(tx.block.timestamp)}</td>
+            <td>{Utils.timeSince(tx.timestamp)}</td>
             <td>
                 <Address id={tx.from} short sm/>
             </td>
