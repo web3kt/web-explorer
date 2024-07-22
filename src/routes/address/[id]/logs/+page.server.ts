@@ -6,6 +6,6 @@ export async function load(event: RequestEvent): Promise<{
     logs: ApiResponse<PagedModel<Log>>;
 }> {
     const address: ApiResponse<Address> = await callApi(event, 'GET', `/v1/addresses/${event.params["id"]}`);
-    const logs: ApiResponse<PagedModel<Log>> = await callApi(event, 'GET', `/v1/addresses/${event.params["id"]}/logs?sort=id,desc&` + event.url.searchParams.toString())
+    const logs: ApiResponse<PagedModel<Log>> = await callApi(event, 'GET', `/v1/addresses/${event.params["id"]}/logs?sort=timestamp,desc&` + event.url.searchParams.toString())
     return {address, logs};
 }
